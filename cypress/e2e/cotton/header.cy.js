@@ -13,15 +13,15 @@ describe('Header', () => {
         .should('have.attr', 'src').should('include','pan@2x.png')
       cy.get('.top-header > .sponsored > [href="https://www.solidaridadnetwork.org/"] > img')
         .should('have.attr', 'src').should('include','solidaridad@2x.png')
-      cy.get('.first > .gtm-top-nav').contains('Cotton Barometer')
-      cy.get('nav .nav > li a').eq(1).contains('company rankings')
+      cy.get('.first > .gtm-top-nav').contains('Cotton Papers')
+      cy.get('nav .nav > li a').eq(1).contains('Company Rankings')
       cy.get('nav .nav > li a').eq(2).contains('Recommendations')
       cy.get('nav .nav > li a').eq(3).contains('Contact')
       cy.get('.icon-search').should("be.visible")
       cy.get('.icon-share').should("be.visible")
     });
 
-    it.only('Klik pada Title COTTONBAROMETER', () => {
+    it('Klik pada Title COTTONBAROMETER', () => {
       cy.get('.logo > img').click()
       cy.url().should('eq','https://cotton.staging.catalyze.id/')
     });
@@ -170,7 +170,7 @@ describe('Header', () => {
 
     it('Double click pada navigasi menu', () => {
       cy.get("nav .nav > li a").eq(0).dblclick();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/cotton-barometer')
+      cy.url().should('eq','https://cotton.staging.catalyze.id/cotton-papers')
       cy.get("nav .nav > li a").eq(1).dblclick();
       cy.url().should('eq','https://cotton.staging.catalyze.id/company-rankings')
       Cypress.on('uncaught:exception', (err, runnable) => {
