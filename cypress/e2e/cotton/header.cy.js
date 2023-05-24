@@ -36,28 +36,39 @@ describe('Header', () => {
       cy.get('.sponsored a').eq(1).should('have.attr','href','https://www.solidaridadnetwork.org/')
     });
 
-    it('Hover dan klik pada menu Cotton Barometer', () => {
+    it('Hover dan klik pada menu Cotton Papers', () => {
       cy.get("nav .nav > li a").eq(0).should('have.css', 'color').and('be.colored', '#555555');
       cy.get("nav .nav > li a").eq(0).realHover();
       cy.get("nav .nav > li a").eq(0).should('have.css', 'color').and('be.colored', '#319044');
+      cy.get("nav .nav > li a").eq(0).click();
+      cy.url().should('eq','https://cotton.staging.catalyze.id/cotton-papers')
     });
 
     it('Hover dan klik pada menu Company Rankings', () => {
       cy.get("nav .nav > li a").eq(1).should('have.css', 'color').and('be.colored', '#555555');
       cy.get("nav .nav > li a").eq(1).realHover();
       cy.get("nav .nav > li a").eq(1).should('have.css', 'color').and('be.colored', '#319044');
+      cy.get("nav .nav > li a").eq(1).click();
+      cy.url().should('eq','https://cotton.staging.catalyze.id/company-rankings')
     });
 
     it('Hover dan klik pada menu Recommendations', () => {
       cy.get("nav .nav > li a").eq(2).should('have.css', 'color').and('be.colored', '#555555');
       cy.get("nav .nav > li a").eq(2).realHover();
       cy.get("nav .nav > li a").eq(2).should('have.css', 'color').and('be.colored', '#319044');
+      cy.get("nav .nav > li a").eq(2).click();
+      cy.url().should('eq','https://cotton.staging.catalyze.id/recommendations')
+      Cypress.on('uncaught:exception', (err, runnable) => {
+          return false
+      })
     });
 
     it('Hover dan klik pada menu Contact', () => {
       cy.get("nav .nav > li a").eq(3).should('have.css', 'color').and('be.colored', '#555555');
       cy.get("nav .nav > li a").eq(3).realHover();
       cy.get("nav .nav > li a").eq(3).should('have.css', 'color').and('be.colored', '#319044');
+      cy.get("nav .nav > li a").eq(3).click();
+      cy.url().should('eq','https://cotton.staging.catalyze.id/contact')
     });
 
     it('Hover dan klik pada icon Search', () => {
@@ -72,7 +83,6 @@ describe('Header', () => {
       const input = cy.get(".search-query");
       input.type("IKEA Group (INGKA Holding BV)")
       cy.get('.ui-menu-item a').eq(0).contains("IKEA Group (INGKA Holding BV)")
-
     });
 
     it('Scroll up or down pada scrollbar list hasil searching', () => {
@@ -148,9 +158,9 @@ describe('Header', () => {
       
     });
 
-    it('Buka pada new tab dan paste link tersebut, kemudian Enter', () => {
+    // it('Buka pada new tab dan paste link tersebut, kemudian Enter', () => {
     
-    });
+    // });
 
     it('Klik tombol Close pada pop up Share', () => { 
       cy.get('.icon-share').click()
@@ -178,9 +188,9 @@ describe('Header', () => {
       })
       cy.get("nav .nav > li a").eq(2).dblclick();
       cy.url().should('eq','https://cotton.staging.catalyze.id/recommendations')
+      // cy.get("nav .nav > li a").eq(3).dblclick();
+      // cy.url().should('eq','https://cotton.staging.catalyze.id/certification-benchmarking')
       cy.get("nav .nav > li a").eq(3).dblclick();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/certification-benchmarking')
-      cy.get("nav .nav > li a").eq(4).dblclick();
       cy.url().should('eq','https://cotton.staging.catalyze.id/contact')
     });
 

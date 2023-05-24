@@ -49,8 +49,8 @@ describe('General', () => {
             cy.url().should('eq','https://cotton.staging.catalyze.id/')
         });
     
-        it('Klik di halaman pada konten ataupun sembarang tempat yang unclickable', () => {
-            
-        });
+        // it('Klik di halaman pada konten ataupun sembarang tempat yang unclickable', () => {
+        //     // tidak di automate
+        // });
     })
 })
