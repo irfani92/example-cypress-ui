@@ -32,7 +32,7 @@ describe('Contact', () => {
         cy.get('footer').should("be.visible")
     });
 
-    it.only('Hover dan klik pada email', () => {
+    it('Hover dan klik pada email', () => {
       cy.scrollTo('bottom')
       cy.wait(5000)
       cy.get('.content-area .list .content .cp > a > span').eq(0).realHover();
