@@ -37,6 +37,11 @@ describe('Contact', () => {
       cy.wait(5000)
       cy.get('.content-area .list .content .cp > a > span').eq(0).realHover();
       cy.get('.content-area .list .content .cp > a > span').eq(0).should('have.css', 'color').and('be.colored', '#319044');
+      cy.get('.content-area .list .content .cp > a').eq(0).invoke('attr', 'href')
+      .then(href => {
+        const after_ = href.slice(href.indexOf('/') + 1);
+        cy.forceVisit(after_);
+      });
     });
 
     it('Hover dan klik pada salah satu join social media (LinkedIn, Facebook, dan/atau Twitter)', () => {

@@ -76,3 +76,9 @@ Cypress.Commands.add('general', () => {
       .should('have.css', 'font-family').and('match', /DIN 2014/)
   }    
 })
+
+Cypress.Commands.add('forceVisit', url => {
+  cy.window().then(win => {
+      return win.open(url, '_self'); 
+    });
+});
