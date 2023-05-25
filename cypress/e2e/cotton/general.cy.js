@@ -6,7 +6,7 @@ describe('General', () => {
             cy.baseUrl()
         })
         it('Akses website Cotton', () => {
-            cy.contains('A Sustainable Cotton Community')
+            cy.contains('A New Sustainable Cotton Community')
         });
     
         it('Lihat pada semua Font pada Cotton website', () => { 

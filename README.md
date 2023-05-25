@@ -28,3 +28,22 @@ npm install
 ```bash
 npx cypress open
 ```
+
+### How to update changes
+- add all change local stage 
+```bash
+git add .
+
+```
+- give name changes
+```bash
+git commit -m "{command for changes}"
+```
+- push to server git 
+```bash
+git push
+```
+- get all updates changes from git 
+```bash
+git pull
+```
