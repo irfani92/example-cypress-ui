@@ -5,7 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl : 'https://cotton.staging.catalyze.id/',
+    baseUrl : 'https://cotton-qa.staging.catalyze.id',
     chromeWebSecurity: false,
   },
 });

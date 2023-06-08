@@ -12,7 +12,7 @@ describe('Footer', () => {
         .should('have.attr', 'src').should('include','pan@2x.png')
       cy.get('footer > .container > .sponsored > [href="https://www.solidaridadnetwork.org/"] > img').should('have.attr', 'src').should('include','solidaridad@2x.png')
       cy.get('footer > .container > .bottom-nav  > li a').eq(0).contains('Cotton Papers')
-      cy.get('footer > .container > .bottom-nav  > li a').eq(1).contains('Company Rankings')
+      cy.get('footer > .container > .bottom-nav  > li a').eq(1).contains('Cotton Rankings')
       cy.get('footer > .container > .bottom-nav  > li a').eq(2).contains('Recommendations')
       cy.get('footer > .container > .bottom-nav  > li a').eq(3).contains('Contact')
       cy.get('footer > .container > .disclaimer').contains('This Cotton Barometer has been partly financed by the government of the Netherlands, Ministry of Foreign Affairs. The government of the Netherlands does not necessarily share the expressed views and interpretations.')
@@ -33,24 +33,27 @@ describe('Footer', () => {
     });
 
     it('Hover dan klik pada menu Cotton Papers', () => {
+      cy.wait(5000)
       cy.get("footer > .container > .bottom-nav > li a").eq(0).realHover();
       cy.get("footer > .container > .bottom-nav > li a").eq(0).should('have.css', 'color').and('be.colored', '#319044');
       cy.get("footer > .container > .bottom-nav > li a").eq(0).click()
-      cy.url().should('eq','https://cotton.staging.catalyze.id/cotton-papers')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/cotton-papers')
     });
 
     it('Hover dan klik pada menu Company Rankings', () => {
-        cy.get("footer > .container > .bottom-nav > li a").eq(1).realHover();
-        cy.get("footer > .container > .bottom-nav > li a").eq(1).should('have.css', 'color').and('be.colored', '#319044');
-        cy.get("footer > .container > .bottom-nav > li a").eq(1).click()
-        cy.url().should('eq','https://cotton.staging.catalyze.id/company-rankings')
+      cy.wait(5000)
+      cy.get("footer > .container > .bottom-nav > li a").eq(1).realHover();  
+      cy.get("footer > .container > .bottom-nav > li a").eq(1).should('have.css', 'color').and('be.colored', '#319044');
+      cy.get("footer > .container > .bottom-nav > li a").eq(1).click()
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/cotton-rankings')
     });
 
     it('Hover dan klik pada menu Recommendations', () => {
         cy.get("footer > .container > .bottom-nav > li a").eq(2).realHover();
+        cy.wait(5000)
         cy.get("footer > .container > .bottom-nav > li a").eq(2).should('have.css', 'color').and('be.colored', '#319044');
         cy.get("footer > .container > .bottom-nav > li a").eq(2).click()
-        cy.url().should('eq','https://cotton.staging.catalyze.id/recommendations')
+        cy.url().should('eq','https://cotton-qa.staging.catalyze.id/recommendations')
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false
         })
@@ -58,9 +61,10 @@ describe('Footer', () => {
 
     it('Hover dan klik pada menu Contact', () => {
         cy.get("footer > .container > .bottom-nav > li a").eq(3).realHover();
+        cy.wait(5000)
         cy.get("footer > .container > .bottom-nav > li a").eq(3).should('have.css', 'color').and('be.colored', '#319044');
         cy.get("footer > .container > .bottom-nav > li a").eq(3).click()
-        cy.url().should('eq','https://cotton.staging.catalyze.id/contact')
+        cy.url().should('eq','https://cotton-qa.staging.catalyze.id/contact')
     });
 
     it('Hover dan klik pada link Creative Commons license', () => {
@@ -72,19 +76,19 @@ describe('Footer', () => {
  
     it('Double click pada navigasi menu', () => {
         cy.get("footer > .container > .bottom-nav > li a").eq(0).dblclick()
-        cy.url().should('eq','https://cotton.staging.catalyze.id/cotton-papers')
+        cy.url().should('eq','https://cotton-qa.staging.catalyze.id/cotton-papers')
         cy.wait(500)
         cy.get("footer > .container > .bottom-nav > li a").eq(1).dblclick()
-        cy.url().should('eq','https://cotton.staging.catalyze.id/company-rankings')
+        cy.url().should('eq','https://cotton-qa.staging.catalyze.id/cotton-rankings')
         cy.wait(500)
         cy.get("footer > .container > .bottom-nav > li a").eq(2).dblclick()
-        cy.url().should('eq','https://cotton.staging.catalyze.id/recommendations')
+        cy.url().should('eq','https://cotton-qa.staging.catalyze.id/recommendations')
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false
         })
         cy.wait(500)
         cy.get("footer > .container > .bottom-nav > li a").eq(3).dblclick()
-        cy.url().should('eq','https://cotton.staging.catalyze.id/contact')
+        cy.url().should('eq','https://cotton-qa.staging.catalyze.id/contact')
     });
 
   })

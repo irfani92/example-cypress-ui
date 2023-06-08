@@ -6,7 +6,7 @@ describe('General', () => {
             cy.baseUrl()
         })
         it('Akses website Cotton', () => {
-            cy.contains('A New Sustainable Cotton Community')
+            cy.contains('An unsustainable cotton sector is a choice')
         });
     
         it('Lihat pada semua Font pada Cotton website', () => { 
@@ -24,7 +24,7 @@ describe('General', () => {
             cy.get('.sponsored a').then(link => {
                 cy.request(link.prop('href')).its('status').should('eq', 200);
             });
-            cy.visit('/company-rankings')
+            cy.visit('/cotton-rankings')
             cy.get('.previous-links a').invoke('attr', 'target').should('eq', '_blank')
             cy.get('.previous-links a').then(link => {
                 cy.request(link.prop('href')).its('status').should('eq', 200);
@@ -32,8 +32,8 @@ describe('General', () => {
         });
     
         it('Akses website Cotton menggunakan "http://"', () => {
-            cy.visit('http://cotton.staging.catalyze.id')
-            cy.url().should('eq','https://cotton.staging.catalyze.id/')
+            cy.visit('https://cotton-qa.staging.catalyze.id/')
+            cy.url().should('eq','https://cotton-qa.staging.catalyze.id/')
         });
     
         it('Masukkan alamat url yang salah', () => {
@@ -46,11 +46,8 @@ describe('General', () => {
             cy.get(".container a .button").realHover();     
             cy.get(".container a .button").should('have.css', 'background-color').and('be.colored', '#277135'); 
             cy.get(".container a").contains('back to home').click()
-            cy.url().should('eq','https://cotton.staging.catalyze.id/')
+            cy.url().should('eq','https://cotton-qa.staging.catalyze.id/')
         });
-    
-        // it('Klik di halaman pada konten ataupun sembarang tempat yang unclickable', () => {
-        //     // tidak di automate
-        // });
+
     })
 })

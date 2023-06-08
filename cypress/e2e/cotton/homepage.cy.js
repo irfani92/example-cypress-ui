@@ -26,25 +26,30 @@ describe('Homepage', () => {
     });
 
     it('Hover dan klik tombol Read The Report pada bagian A Sustainable Cotton Community', () => {
-      
+      cy.scrollTo(0, 500)
+      cy.wait(5000)
+      cy.get('.content-area > .button').eq(0).realHover();
+      cy.get(".content-area > .button").eq(0).should('have.css', 'background-color').and('be.colored', '#277135');
+      cy.get(".content-area > .button").eq(0).click()
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id//cotton-papers')
     });
 
     it('Hover dan klik tombol View The Ranking pada bagian Ranking Retailers and Brands', () => {
-      cy.scrollTo('bottom')
+      cy.scrollTo(0, 500)
       cy.wait(5000)
-      cy.get(".content-area a.button").eq(1).realHover();
-      cy.get(".content-area a.button").eq(1).should('have.css', 'background-color').and('be.colored', '#277135');
-      cy.get(".content-area a.button").eq(1).click()
-      cy.url().should('eq','https://cotton.staging.catalyze.id//company-rankings')
+      cy.get('.content-area > .button').eq(1).realHover();
+      cy.get(".content-area > .button").eq(1).should('have.css', 'background-color').and('be.colored', '#277135');
+      cy.get(".content-area > .button").eq(1).click()
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id//cotton-rankings')
     });
 
     it('Hover dan klik tombol Recommendations for Stakeholders pada bagian Who is the Cotton Barometer for?', () => {
-        cy.scrollTo('bottom')
+        cy.scrollTo(0, 500)
         cy.wait(5000)
         cy.get(".who-is .container a.button").eq(0).realHover();
         cy.get(".who-is .container a.button").eq(0).should('have.css', 'background-color').and('be.colored', '#277135');
         cy.get(".who-is .container a.button").eq(0).click()
-        cy.url().should('eq','https://cotton.staging.catalyze.id/recommendations')
+        cy.url().should('eq','https://cotton-qa.staging.catalyze.id/recommendations')
         Cypress.on('uncaught:exception', (err, runnable) => {
               return false
         })
@@ -55,7 +60,8 @@ describe('Homepage', () => {
     });
 
     it('Klik kanan pada tombol yang ada di homepage', () => {
-        
+      cy.get('section').eq(1).rightclick()
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/')
     });
   })
 })

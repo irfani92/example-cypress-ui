@@ -14,7 +14,7 @@ describe('Header', () => {
       cy.get('.top-header > .sponsored > [href="https://www.solidaridadnetwork.org/"] > img')
         .should('have.attr', 'src').should('include','solidaridad@2x.png')
       cy.get('.first > .gtm-top-nav').contains('Cotton Papers')
-      cy.get('nav .nav > li a').eq(1).contains('Company Rankings')
+      cy.get('nav .nav > li a').eq(1).contains('Cotton Rankings')
       cy.get('nav .nav > li a').eq(2).contains('Recommendations')
       cy.get('nav .nav > li a').eq(3).contains('Contact')
       cy.get('.icon-search').should("be.visible")
@@ -23,7 +23,7 @@ describe('Header', () => {
 
     it('Klik pada Title COTTONBAROMETER', () => {
       cy.get('.logo > img').click()
-      cy.url().should('eq','https://cotton.staging.catalyze.id/')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/')
     });
 
     it('Klik pada logo Pesticide Action Network UK', () => {
@@ -38,26 +38,29 @@ describe('Header', () => {
 
     it('Hover dan klik pada menu Cotton Papers', () => {
       cy.get("nav .nav > li a").eq(0).should('have.css', 'color').and('be.colored', '#555555');
+      cy.wait(5000)
       cy.get("nav .nav > li a").eq(0).realHover();
       cy.get("nav .nav > li a").eq(0).should('have.css', 'color').and('be.colored', '#319044');
       cy.get("nav .nav > li a").eq(0).click();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/cotton-papers')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/cotton-papers')
     });
 
     it('Hover dan klik pada menu Company Rankings', () => {
       cy.get("nav .nav > li a").eq(1).should('have.css', 'color').and('be.colored', '#555555');
+      cy.wait(5000)
       cy.get("nav .nav > li a").eq(1).realHover();
       cy.get("nav .nav > li a").eq(1).should('have.css', 'color').and('be.colored', '#319044');
       cy.get("nav .nav > li a").eq(1).click();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/company-rankings')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/cotton-rankings')
     });
 
     it('Hover dan klik pada menu Recommendations', () => {
       cy.get("nav .nav > li a").eq(2).should('have.css', 'color').and('be.colored', '#555555');
+      cy.wait(5000)
       cy.get("nav .nav > li a").eq(2).realHover();
       cy.get("nav .nav > li a").eq(2).should('have.css', 'color').and('be.colored', '#319044');
       cy.get("nav .nav > li a").eq(2).click();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/recommendations')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/recommendations')
       Cypress.on('uncaught:exception', (err, runnable) => {
           return false
       })
@@ -65,15 +68,16 @@ describe('Header', () => {
 
     it('Hover dan klik pada menu Contact', () => {
       cy.get("nav .nav > li a").eq(3).should('have.css', 'color').and('be.colored', '#555555');
+      cy.wait(5000)
       cy.get("nav .nav > li a").eq(3).realHover();
       cy.get("nav .nav > li a").eq(3).should('have.css', 'color').and('be.colored', '#319044');
       cy.get("nav .nav > li a").eq(3).click();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/contact')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/contact')
     });
 
     it('Hover dan klik pada icon Search', () => {
       cy.get('.icon-search').realHover()
-      cy.get('header form.search button').should('have.css', 'background-image','url("https://cotton.staging.catalyze.id/addons/default/themes/barometer2023/img/icons/search.svg")')
+      cy.get('header form.search button').should('have.css', 'background-image','url("https://cotton-qa.staging.catalyze.id/addons/default/themes/barometer2023/img/icons/search.svg")')
       cy.get('.icon-search').click()
       cy.get('.search-query').invoke('attr', 'placeholder').should('contain', 'Search a company / brand')
     });
@@ -103,7 +107,7 @@ describe('Header', () => {
       cy.get('.ui-menu-item a').eq(0).realHover()
       cy.get('.ui-menu .ui-menu-item a').should('have.css', 'color').and('be.colored', '#319044');
       cy.get('.ui-menu-item a').eq(0).click()
-      cy.url().should('eq','https://cotton.staging.catalyze.id/company-rankings#aditya-birla')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/company-rankings#aditya-birla')
     });
 
     it('Hover dan klik pada icon Share', () => {
@@ -112,7 +116,7 @@ describe('Header', () => {
         const win = $els[0].ownerDocument.defaultView
         const before = win.getComputedStyle($els[0], 'before')
         const contentValue = before.getPropertyValue('background-image')
-        expect(contentValue).to.eq('url("https://cotton.staging.catalyze.id/addons/default/themes/barometer2023/img/icons/ic_share_green.svg")')
+        expect(contentValue).to.eq('url("https://cotton-qa.staging.catalyze.id/addons/default/themes/barometer2023/img/icons/ic_share_green.svg")')
       })
       cy.get('.icon-share').click()
       cy.get('.modal-header').contains('Share this via')
@@ -125,42 +129,42 @@ describe('Header', () => {
     
     it('Hover dan klik share pada social media tersebut (LinkedIn, Facebook, Instagram, dan/atau Twitter)', () => {
       cy.get('.icon-share').click() 
-      //cy.get('#ShareModal .modal-dialog .list a').eq(0).realHover('mouse') 
-     // cy.get('#ShareModal .modal-dialog .list a').eq(0).should('have.css','border','1px')
-      //.and('be.colored','#1F702F')rgb(31, 112, 47) rgb(153, 176, 188)
-     cy.get('#ShareModal .modal-dialog .list a').eq(0).within(($el) => {
-      cy.window().then((win) => {
-        const befores = win.getComputedStyle($el[0],"before") 
-        console.log(befores);
-         const width = befores.getPropertyValue("border");
-         //expect(width).to.equal("60px");
-      });
-    });
-   
-      cy.get('#ShareModal .modal-dialog .list a').eq(0).realHover().then($els => {
-        const win = $els[0].ownerDocument.defaultView
-        console.log(win.getComputedStyle($els[0], 'before').border);
-        // const before = win.getComputedStyle($els[0], '::before');
-        // console.log(before.borderBottomColor);
-        // const contentValue = before.getPropertyValue('border')
-        // cy.log(before.getPropertyValue('border-top-color'))
-        // cy.log(rgbHex(contentValue))
-        //expect(rgbHex(contentValue)).to.eq('1F702F'); 
-      })   
+      cy.get('[data-share-network="linkedin"]').realHover()
+      cy.get('[data-share-network="linkedin"]').should('have.css', 'border-top-color').and('be.colored', '#319044');
+      cy.get('[data-share-network="facebook"]').realHover()
+      cy.get('[data-share-network="facebook"]').should('have.css', 'border-top-color').and('be.colored', '#319044');
+      cy.get('[data-share-network="twitter"]').realHover()
+      cy.get('[data-share-network="twitter"]').should('have.css', 'border-top-color').and('be.colored', '#319044');
+//rgb(31, 112, 47)#1F702F#319044
+    
+    cy.get("#ShareModal .modal-dialog .list a").each(($li) => {
+        cy.wait(5000)
+        cy.get($li).invoke("attr", "target", "_blank").click()
+        if ($li.attr('class') === "email") {
+            cy.get($li).should('have.attr','href'
+            ,'mailto:example@mail.com?subject=https://cotton-qa.staging.catalyze.id/')
+        } else {
+            cy.get($li).should('have.attr','data-share-url','https://cotton-qa.staging.catalyze.id/')
+        }
+        
+    })
       
     });
 
     it('Hover dan klik share pada icon Email', () => {
-      
+      cy.get('.icon-share').click() 
+      cy.get('.email').eq(0).realHover()
+      cy.get('.email').eq(0).should('have.css', 'border-top-color').and('be.colored', '#319044');
+      cy.get('.email').eq(0).invoke("attr", "target", "_blank").click()
+      cy.get('.email').eq(0).should('have.attr','href'
+      ,'mailto:example@mail.com?subject=https://cotton-qa.staging.catalyze.id/')
     });
 
     it('Hover dan klik pada tombol Copy link untuk share', () => {
-      
+      cy.get('.icon-share').click() 
+      cy.get('#copyButton').click()
+      cy.get('.copy-success').eq(0).should("be.visible")
     });
-
-    // it('Buka pada new tab dan paste link tersebut, kemudian Enter', () => {
-    
-    // });
 
     it('Klik tombol Close pada pop up Share', () => { 
       cy.get('.icon-share').click()
@@ -180,18 +184,18 @@ describe('Header', () => {
 
     it('Double click pada navigasi menu', () => {
       cy.get("nav .nav > li a").eq(0).dblclick();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/cotton-papers')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/cotton-papers')
       cy.get("nav .nav > li a").eq(1).dblclick();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/company-rankings')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/cotton-rankings')
       Cypress.on('uncaught:exception', (err, runnable) => {
         return false
       })
       cy.get("nav .nav > li a").eq(2).dblclick();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/recommendations')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/recommendations')
       // cy.get("nav .nav > li a").eq(3).dblclick();
       // cy.url().should('eq','https://cotton.staging.catalyze.id/certification-benchmarking')
       cy.get("nav .nav > li a").eq(3).dblclick();
-      cy.url().should('eq','https://cotton.staging.catalyze.id/contact')
+      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/contact')
     });
 
     it('Input company/brand yang tidak ada di database (No result), pada text field Search', () => {
