@@ -4,9 +4,9 @@ describe('Recommendations', () => {
     beforeEach(() => {
       cy.viewport(1920, 1280)
       cy.visit('/recommendations')
-      Cypress.on('uncaught:exception', (err, runnable) => {
-        return false
-    })
+    //   Cypress.on('uncaught:exception', (err, runnable) => {
+    //     return false
+    // })
       cy.general();
     })
 
