@@ -261,7 +261,15 @@ describe('Cotton Papers', () => {
       });
 
       it('Filter/sort pada Score list yang tidak ada data (No Result)', () => {
-        
+        cy.get('.company-name > .dropdown > .dropdown-toggle > .title').click()
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .inner-list > li').eq(53).click()
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').click({force: true})
+        cy.get('.breakdown > .dropdown > .dropdown-toggle > .title').click()
+        cy.get('.dropdown-menu > :nth-child(4) > .inner-list > [data-id="re"]').click()
+        cy.get('.breakdown > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').click()
+        cy.get('.no-result > h5').contains('Sorry, no result found')
+        cy.get('.no-result > :nth-child(2)').contains('Please try different filter criteria or reset the filter.')
+        cy.get('.no-result > .button-area > .button').should('be.visible')
       });
     })
   })
