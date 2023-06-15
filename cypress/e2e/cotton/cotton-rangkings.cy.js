@@ -94,11 +94,58 @@ describe('Cotton Papers', () => {
       });
   
       it('Lihat pada semua percentage bar', () => {
-      
+        cy.get('.company > .list > .list-detail > .breakdown').each(($list) => {
+
+              if ($list.text() == "") {
+                const win = $list[0].ownerDocument.defaultView
+                const before = win.getComputedStyle($list[0].firstChild, ':after') 
+                const contentValue = before.getPropertyValue('content')
+                expect(contentValue).to.eq('"No Breakdown Published"')
+              }
+
+              if ($list.text() != "") {
+                const win = $list[0].ownerDocument.defaultView
+                const before = win.getComputedStyle($list[0].firstChild, null) 
+                const contentValue = before.getPropertyValue('background-color')
+                expect(contentValue).to.eq(hexToRgbA('#FFFFFF'))
+              }
+
+              if ($list[0].firstChild.firstChild != null && $list[0].firstChild.firstChild.classList.contains("bc") == true) {
+                const win = $list[0].ownerDocument.defaultView
+                const child1 = win.getComputedStyle($list[0].firstChild.childNodes[0], null) 
+                const contentValue1 = child1.getPropertyValue('background-color')
+                expect(contentValue1).to.eq(hexToRgbA('#185C50'))
+              }
+
+              if ($list[0].firstChild.firstChild != null && $list[0].firstChild.firstChild.classList.contains("og") == true) {
+                const win = $list[0].ownerDocument.defaultView
+                const child1 = win.getComputedStyle($list[0].firstChild.childNodes[0], null) 
+                const contentValue1 = child1.getPropertyValue('background-color')
+                expect(contentValue1).to.eq(hexToRgbA('#60A7A3'))
+              }
+
+              
+              if ($list[0].firstChild.childNodes[2] != null && $list[0].firstChild.childNodes[2].classList.contains("re") == true) {
+                const win = $list[0].ownerDocument.defaultView
+                const child1 = win.getComputedStyle($list[0].firstChild.childNodes[2], null) 
+                const contentValue1 = child1.getPropertyValue('background-color')
+                expect(contentValue1).to.eq(hexToRgbA('#84C2C2'))
+              }
+        })
       });
   
       it('Hover dan klik pada salah satu tombol chevron See Details', () => {
-         
+        cy.get('.company > .list > .list-detail > .see-detail > .collapse-toggle').each(($list)=>{
+          const win = $list[0].ownerDocument.defaultView
+          const before = win.getComputedStyle($list[0], 'before')
+          const contentValue = before.getPropertyValue('content')
+          expect(contentValue).to.eq('"See Details"')
+          cy.get($list).click({ force : true})
+          cy.wait(5000)
+          cy.get($list).should('have.attr','aria-expanded','true')
+          cy.get('.panel-collapse  > .panel-body > .notable-brand > .content').should('be.visible')
+          cy.get('.panel-collapse > .panel-body > .remarks > .content').should('be.visible')
+        })
       });
   
       it('Klik tombol Hide Details pada score list yang terbuka', () => {
