@@ -72,7 +72,7 @@ Cypress.Commands.add('general', () => {
     cy.get('h6')
       .should('have.css', 'font-size', '22px')
       .should('have.css', 'font-weight', '400')
-     // .should('have.css', 'line-height', '34px')
+      .should('have.css', 'line-height', '34px')
       .should('have.css', 'font-family').and('match', /DIN 2014/)
   }    
 })
