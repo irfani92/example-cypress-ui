@@ -194,18 +194,29 @@ describe('Cotton Papers', () => {
         cy.get('.score > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').should('have.css','background-color').and('be.colored', '#319044')
       });
 
-      it.only('Hover dan klik pada tombol Confirm setelah pilih salah satu filter/sort', () => {
+      it('Hover dan klik pada tombol Confirm setelah pilih salah satu filter/sort', () => {
         cy.get('.company-name > .dropdown > .dropdown-toggle > .title').click()
         cy.get('.company-name > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).click()
         cy.wait(5000)
         cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').realHover()
         cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').should('have.css','background-color').and('be.colored', '#277135')
         cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').click()
-        cy.get('.company-name > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).contains(' ASICS')
+        cy.get('.list-detail > .company-name').contains(' ASICS')
       });
 
       it('Hover dan klik pada tombol Reset pada filter/sort', () => {
-        
+        cy.get('.company-name > .dropdown > .dropdown-toggle > .title').click()
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).click()
+        cy.wait(5000)
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').realHover()
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').should('have.css','background-color').and('be.colored', '#319044')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).click()
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').click({force: true})
+        cy.get('.company-name > .dropdown > .dropdown-toggle > .title').click()
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').click({force: true})
+        cy.wait(5000)
+        cy.scrollTo('top')
+        cy.get('.list-detail > .company-name').contains('Decathlon Group')
       });
 
       it('Scroll down pada halaman Cotton Rankings', () => {
