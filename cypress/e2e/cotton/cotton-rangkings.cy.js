@@ -111,7 +111,7 @@ describe('Cotton Papers', () => {
   
       it('Hover dan klik pada tombol View All', () => {
         cy.scrollTo('bottom')
-        cy.wait(5000)
+        cy.wait(7000)
         cy.get(':nth-child(4) > .button').realHover()
         cy.get(':nth-child(4) > .button').should('have.css', 'background-color').and('be.colored', '#277135');
         cy.wait(5000)
@@ -119,23 +119,133 @@ describe('Cotton Papers', () => {
         cy.get('#zalando-se > .list').should('be.visible')
       });
   
-      it.only('Hover dan klik tombol How To Read The Rankings pada Sidebar Legend', () => {
+      it('Hover dan klik tombol How To Read The Rankings pada Sidebar Legend', () => {
         cy.scrollTo(0, 500)
         cy.wait(5000)
-        cy.get('.legends > .legend-card > .button').realHover()
+        cy.get('.legends > .legend-card > .button').realHover({scrollBehavior : false})
         cy.get('.legends > .legend-card > .button').should('have.css', 'background-color').and('be.colored', '#277135');
         cy.wait(5000)
         cy.get('.legends > .legend-card > .button').click()
       });
   
-      it('Klik tombol Close pada pop up Share', () => { 
-        cy.get("#retailers-and-brands > .title ").eq(0).click()
+      it('Hover dan klik salah satu hyperlink pada Previous Years Cotton Rankings', () => { 
+        cy.scrollTo(0, 500)
         cy.wait(5000)
-        cy.get('#collapse-retailers-and-brands > .body > .bottom > .share-socmed > .icon-share').eq(0).click();
-        cy.get('[data-dismiss="modal"] > img').click()
-        cy.get('.modal-content').should('not.be.visible')
+        cy.get('.legends > .previous-links > a').each(($btn) => {
+            cy.wait(7000)
+            cy.get($btn).realHover({scrollBehavior : false})
+            cy.get($btn).should('have.css','text-decoration','none solid rgb(49, 144, 68)')
+            cy.get($btn).should('have.css','color').and('be.colored', '#319044')
+            let year = $btn.text().substr($btn.text().length - 4)
+            cy.get($btn).click({ scrollBehavior : false})
+            cy.get($btn).invoke('attr', 'href').should('eq','https://sustainablecottonranking.org/check-the-scores#'+year+'')
+          })
       });
   
+      it('Klik pada filter Score', () => {
+        cy.get('.score > .dropdown > .dropdown-toggle > .title').click()
+        cy.get('.score > .dropdown > .dropdown-menu > li > a.sort').eq(0).contains('Ascending')
+        cy.get('.score > .dropdown > .dropdown-menu > li > a.sort').eq(1).contains('Descending')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).contains('>= 99%')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(1).contains('>= 90%')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(2).contains('>= 80%')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(3).contains('< 80%')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(4).contains('Not Clear')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(5).contains('0%')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').contains('confirm')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').contains('reset')
+      });
+
+      it('Klik pada filter Company Name', () => {
+        cy.get('.company-name > .dropdown > .dropdown-toggle > .title').click()
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > a.sort').eq(0).contains('A to Z')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > a.sort').eq(1).contains('Z to A')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .inner-list').should('be.visible')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).contains(' ASICS')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .inner-list').scrollTo('bottom')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').contains('confirm')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').contains('reset')
+      });
+
+      it('Klik pada filter Breakdown', () => {
+        cy.get('.breakdown > .dropdown > .dropdown-toggle > .title').click()
+        cy.get('.dropdown-menu > :nth-child(2) > .inner-list > [data-id="yes"]').contains('Yes')
+        cy.get('.dropdown-menu > :nth-child(2) > .inner-list > [data-id="no"]').contains('No')
+        cy.get('.dropdown-menu > :nth-child(4) > .inner-list > [data-id="bc"]').contains('Better Cotton or equivalent')
+        cy.get('.dropdown-menu > :nth-child(4) > .inner-list > [data-id="or"]').contains('Organic')
+        cy.get('.dropdown-menu > :nth-child(4) > .inner-list > [data-id="re"]').contains('Recycled')
+        cy.get('.dropdown-menu > :nth-child(4) > .inner-list > [data-id="other"]').contains('Other')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').contains('confirm')
+        cy.get('.company-name > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').contains('reset')
+      });
+
+      it.only('Hover/klik pada salah satu pilihan filter/sort', () => {
+        cy.get('.score > .dropdown > .dropdown-toggle > .title').click()
+        cy.wait(5000)
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).realHover({scrollBehavior : false})
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).should('have.css','background-color','rgba(49, 144, 68, 0.14)')
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).click()
+        cy.get('.score > .dropdown > .dropdown-menu > li > .inner-list > li').eq(0).should('have.css','color').and('be.colored', '#319044')
+        cy.wait(5000)
+        cy.get('.score > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').realHover()
+        cy.get('.score > .dropdown > .dropdown-menu > li > .link-area > div >a.button.confirm').should('have.css','background-color').and('be.colored', '#277135')
+        cy.wait(5000)
+        cy.get('.score > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').realHover() 
+        cy.get('.score > .dropdown > .dropdown-menu > li > .link-area > div >a.button.reset').should('have.css','background-color').and('be.colored', '#319044')
+      });
+
+      it('Hover dan klik pada tombol Confirm setelah pilih salah satu filter/sort', () => {
+        
+      });
+
+      it('Hover dan klik pada tombol Reset pada filter/sort', () => {
+        
+      });
+
+      it('Scroll down pada halaman Cotton Rankings', () => {
+        cy.scrollTo(0, 1000,{duration : 3000})
+        cy.wait(5000)
+        cy.get('.header').should('have.class','is-sticky')
+      });
+
+      it('Scroll down kemudian scroll up pada halaman Cotton Rankings', () => {
+        cy.scrollTo('bottom',{duration : 3000})
+        cy.wait(5000)
+        cy.scrollTo(0, 1000,{duration : 1000})
+        cy.get('.header').should('have.class','is-sticky')
+      });
+
+      it('Klik tombol Read More (+) pada How To Read The Rankings dan/atau How We Did The Research', () => {
+        cy.scrollTo('bottom')
+        cy.wait(5000)
+        cy.get(':nth-child(1) > [data-target="#HowtoReadtheRankings"]').click()
+        cy.get('#HowtoReadtheRankings > .body > h5').should('be.visible')
+        cy.get(':nth-child(1) > [data-target="#HowWeDidTheResearch"]').click()
+        cy.get('#HowWeDidTheResearch > .body > h5').should('be.visible')
+      });
+
+      it('Klik tombol Read Less (-) pada konten yang terbuka tersebut', () => {
+        cy.scrollTo('bottom')
+        cy.wait(5000)
+        cy.get(':nth-child(1) > [data-target="#HowtoReadtheRankings"]').click()
+        cy.wait(5000)
+        cy.get(':nth-child(1) > [data-target="#HowtoReadtheRankings"]').click()
+        cy.get('#HowtoReadtheRankings > .body > h5').should('not.be.visible')
+        cy.get(':nth-child(1) > [data-target="#HowWeDidTheResearch"]').click()
+        cy.wait(5000)
+        cy.get(':nth-child(1) > [data-target="#HowWeDidTheResearch"]').click()
+        cy.get('#HowWeDidTheResearch > .body > h5').should('not.be.visible')
+        
+      });
+
+      it('Klik kanan pada tombol View All (manual)', () => {
+        cy.get(':nth-child(4) > .button').rightclick()
+        expect(performance.navigation.type).to.not.equal(performance.navigation.TYPE_RELOAD);
+      });
+
+      it('Filter/sort pada Score list yang tidak ada data (No Result)', () => {
+        
+      });
     })
   })
   
