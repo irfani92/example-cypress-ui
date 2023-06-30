@@ -3,6 +3,7 @@ describe('Contact', () => {
   describe('Memastikan halaman Contact berhasil ditampilkan dan berfungsi dengan baik sesuai desain yang ada', () => { 
     beforeEach(() => {
       cy.viewport(1920, 1280)
+      cy.loginAdmin()
       cy.visit('/contact')
       cy.general();
     })

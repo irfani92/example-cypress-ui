@@ -3,6 +3,7 @@ describe('General', () => {
 
         beforeEach(() => {
             cy.viewport(1920, 1280)
+            cy.loginAdmin()
             cy.baseUrl()
         })
         it('Akses website Cotton', () => {

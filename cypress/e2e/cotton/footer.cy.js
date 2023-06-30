@@ -3,6 +3,7 @@ describe('Footer', () => {
   describe('Memastikan bahwa footer website sesuai dengan desain dan berhasil direct ke halaman yang dimaksud ketika diklik', () => { 
     beforeEach(() => {
       cy.viewport(1920, 1280)
+      cy.loginAdmin()
       cy.baseUrl()
       cy.general();
     })

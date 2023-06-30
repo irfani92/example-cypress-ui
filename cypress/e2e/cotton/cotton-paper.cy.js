@@ -2,6 +2,7 @@ describe('Cotton Papers', () => {
   describe('Memastikan halaman Cotton Papers berhasil ditampilkan dan berfungsi dengan baik sesuai desain yang ada', () => { 
     beforeEach(() => {
       cy.viewport(1920, 1280)
+      cy.loginAdmin()
       cy.visit('/cotton-papers')
       cy.general();
     })

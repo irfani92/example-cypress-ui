@@ -2,6 +2,7 @@ describe('Cotton Papers', () => {
     describe('Memastikan halaman Cotton Rankings berhasil ditampilkan dan berfungsi dengan baik sesuai desain yang ada', () => { 
       beforeEach(() => {
         cy.viewport(1920, 1280)
+        cy.loginAdmin()
         cy.visit('/cotton-rankings')
         cy.general();
       })

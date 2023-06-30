@@ -3,6 +3,7 @@ describe('Header', () => {
   describe('Memastikan bahwa header website terdiri dari navigasi (menu ataupun submenu) sesuai desain yang ada dan berhasil direct ke page yang dimaksud ketika diklik', () => { 
     beforeEach(() => {
       cy.viewport(1920, 1280)
+      cy.loginAdmin()
       cy.baseUrl()
       cy.general();
     })

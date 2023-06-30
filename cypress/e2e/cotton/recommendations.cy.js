@@ -3,6 +3,7 @@ describe('Recommendations', () => {
   describe('Memastikan halaman Recommendations berhasil ditampilkan dan berfungsi dengan baik sesuai desain yang ada', () => { 
     beforeEach(() => {
       cy.viewport(1920, 1280)
+      cy.loginAdmin()
       cy.visit('/recommendations')
     //   Cypress.on('uncaught:exception', (err, runnable) => {
     //     return false

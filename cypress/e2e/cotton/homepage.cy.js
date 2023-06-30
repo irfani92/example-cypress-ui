@@ -3,6 +3,7 @@ describe('Homepage', () => {
   describe('Memastikan homepage berhasil ditampilkan dan berfungsi dengan baik sesuai desain yang ada', () => { 
     beforeEach(() => {
       cy.viewport(1920, 1280)
+      cy.loginAdmin()
       cy.baseUrl()
       cy.general();
     })

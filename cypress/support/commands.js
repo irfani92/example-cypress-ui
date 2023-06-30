@@ -82,3 +82,23 @@ Cypress.Commands.add('forceVisit', url => {
       return win.open(url, '_self'); 
     });
 });
+
+Cypress.Commands.add('loginAdmin', () => {
+    cy.visit('/admin');
+
+    const email = cy.get('input[name="email"]');
+    email.type("okky@catalyzecommunications.com")
+
+    const password = cy.get("input[name='password']");
+    password.type("sembarangan2015!!")
+
+    const button = cy.get('#login-submit');
+    button.click();
+
+    cy.wait(5000)
+        // cy.on("window:alert", (text) => {
+        //     expect(text).to.contains("welcome");
+        // })
+
+        // cy.url().should('eq','https://react-gallery-db1yvbqgp-irfan91catalyze.vercel.app/dashboard')
+})
