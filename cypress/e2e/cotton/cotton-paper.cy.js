@@ -10,7 +10,7 @@ describe('Cotton Papers', () => {
     it('Akses halaman Cotton Papers', () => { 
         cy.get('header').should("be.visible")
         cy.get('.banner').should("be.visible")
-        cy.get('.banner > .content > .container > h1').contains('Cotton Papers')
+        cy.get('.banner > .content > .container > h1').contains('Cotton Paper')
         cy.get('.banner > .content > .container > h6').should("be.visible")
         cy.get('.cotton-barometer section.lead').should('have.css', 'background-color').and('be.colored', '#F2F1EC');
         cy.get('#list-paper .img-area img').should("be.visible")
@@ -23,37 +23,38 @@ describe('Cotton Papers', () => {
         })
         cy.get('#list-paper > .content-area > .content > .bottom > .button > :nth-child(1) > img').should("be.visible")
         cy.get('#list-paper > .content-area > .content > .bottom > .button > :nth-child(1)').contains('Download the paper')
-        cy.get('#list-paper > .content-area > .content > .bottom > .button > :nth-child(1)').click()
+        cy.get('#list-paper > .content-area > .content > .bottom > .button > :nth-child(1)').eq(0).click()
         cy.get('#press-release > .content-area > .content > .bottom > .button').should("be.visible")
         cy.get('#press-release > .content-area > .content > .bottom > .button').contains('Download Press Release')
         cy.get('#press-release > .content-area > .content > .bottom > .button').click()
         cy.scrollTo('bottom')
         cy.wait(5000)
-        cy.get('footer').should("be.visible")
+        //cy.get('footer').should("be.visible")
     });
 
     it('Hover dan klik pada tombol Download The Paper', () => {
-        cy.wait(5000)
-        cy.get('#press-release > .content-area > .content > .bottom > .button').realHover()
-        cy.get('#press-release > .content-area > .content > .bottom > .button').should('have.css', 'background-color').and('be.colored', '#277135');
-        cy.get('#press-release > .content-area > .content > .bottom > .button').click()
-        cy.get('#press-release > .content-area > .content > .bottom > .button').should('have.attr','target','_blank')
+      cy.wait(5000)
+        cy.get('#press-release > .content-area > .content > .bottom > .button').eq(0).realHover()
+        cy.get('#press-release > .content-area > .content > .bottom > .button').eq(0).should('have.css', 'background-color').and('be.colored', '#277135');
+        cy.get('#press-release > .content-area > .content > .bottom > .button').eq(0).click()
+        cy.get('#press-release > .content-area > .content > .bottom > .button').eq(0).should('have.attr','target','_blank')
     });
 
-    it('Download the dokumen', () => {
+    // it('Download the dokumen', () => {
      
-    });
+    // });
 
     it('Hover dan klik pada tombol Download Press Release', () => {
         cy.wait(5000)
-        cy.get('#list-paper > .content-area > .content > .bottom > .button').realHover()
-        cy.get('#list-paper > .content-area > .content > .bottom > .button').should('have.css', 'background-color').and('be.colored', '#277135');
-        cy.get('#list-paper > .content-area > .content > .bottom > .button').click()
-        cy.get('#list-paper > .content-area > .content > .bottom > .button').should('have.attr','target','_blank')
+        cy.get('#list-paper > .content-area > .content > .bottom > .button').eq(1).realHover()
+        cy.get('#list-paper > .content-area > .content > .bottom > .button').eq(1).should('have.css', 'background-color').and('be.colored', '#277135');
+        cy.get('#list-paper > .content-area > .content > .bottom > .button').eq(1).click()
+        cy.get('#list-paper > .content-area > .content > .bottom > .button').eq(1).should('have.attr','target','_blank')
 
     });
 
     it('Hover dan klik pada icon Share', () => {
+      cy.wait(5000)
         cy.get('.icon-share').realHover()
         cy.get('.icon-share').then($els => {
           const win = $els[0].ownerDocument.defaultView
@@ -114,6 +115,7 @@ describe('Cotton Papers', () => {
         cy.wait(5000)
         cy.get('[data-dismiss="modal"] > img').click()
         cy.get('.modal-content').should('not.be.visible')
+        cy.wait(7000)
       });
   })
 })

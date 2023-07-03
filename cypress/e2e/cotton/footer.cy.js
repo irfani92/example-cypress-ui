@@ -90,6 +90,7 @@ describe('Footer', () => {
         cy.wait(500)
         cy.get("footer > .container > .bottom-nav > li a").eq(3).dblclick()
         cy.url().should('eq','https://cotton-qa.staging.catalyze.id/contact')
+        cy.wait(7000)
     });
 
   })

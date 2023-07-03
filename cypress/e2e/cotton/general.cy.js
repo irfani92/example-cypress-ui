@@ -48,7 +48,7 @@ describe('General', () => {
             cy.get(".container a .button").should('have.css', 'background-color').and('be.colored', '#277135'); 
             cy.get(".container a").contains('back to home').click()
             cy.url().should('eq','https://cotton-qa.staging.catalyze.id/')
+            cy.wait(7000)
         });
-
     })
 })

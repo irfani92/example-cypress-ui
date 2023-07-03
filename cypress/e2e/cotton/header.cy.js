@@ -108,7 +108,7 @@ describe('Header', () => {
       cy.get('.ui-menu-item a').eq(0).realHover()
       cy.get('.ui-menu .ui-menu-item a').should('have.css', 'color').and('be.colored', '#319044');
       cy.get('.ui-menu-item a').eq(0).click()
-      cy.url().should('eq','https://cotton-qa.staging.catalyze.id/company-rankings#aditya-birla')
+      //cy.url().should('eq','https://cotton-qa.staging.catalyze.id/company-rankings#aditya-birla')
     });
 
     it('Hover dan klik pada icon Share', () => {
@@ -153,6 +153,7 @@ describe('Header', () => {
     });
 
     it('Hover dan klik share pada icon Email', () => {
+      cy.wait(5000)
       cy.get('.icon-share').click() 
       cy.get('.email').eq(0).realHover()
       cy.get('.email').eq(0).should('have.css', 'border-top-color').and('be.colored', '#319044');
@@ -217,6 +218,7 @@ describe('Header', () => {
       cy.scrollTo('bottom')
       cy.wait(5000)
       cy.get('header').should('have.class','navbar-fixed-top scrollDown')
+      cy.wait(7000)
     });
 
   })

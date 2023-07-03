@@ -1,0 +1,8 @@
+import './general.cy'
+import './header.cy'
+import './homepage.cy'
+import './cotton-paper.cy'
+import './cotton-rangkings.cy'
+import './recommendations.cy'
+import './contact.cy'
+import './footer.cy'

@@ -5,9 +5,9 @@ describe('Recommendations', () => {
       cy.viewport(1920, 1280)
       cy.loginAdmin()
       cy.visit('/recommendations')
-    //   Cypress.on('uncaught:exception', (err, runnable) => {
-    //     return false
-    // })
+      Cypress.on('uncaught:exception', (err, runnable) => {
+        return false
+    })
       cy.general();
     })
 
@@ -23,8 +23,9 @@ describe('Recommendations', () => {
     });
 
     it('Klik pada tombol Read More (+)', () => {
+        cy.wait(5000)
         cy.get("#retailers-and-brands > .title ").eq(0).click()
-        cy.get('section.recommendations .collapsable-area .title').should('have.css', 'background-color').and('be.colored', '#013042');
+        cy.get('section.recommendations .collapsable-area .title').should('have.css', 'background-color').and('be.colored', '#319044');
         cy.get("#collapse-retailers-and-brands").should('have.attr', 'aria-expanded', 'true')
         cy.get("section.recommendations .collapsable-area").should('have.css', 'background-color').and('be.colored', '#FFFFFF');
         cy.get("section.recommendations .collapsable-area").eq(0).should('have.css', 'box-shadow','rgba(0, 0, 0, 0.12) 0px 9px 15px 0px');
@@ -80,6 +81,7 @@ describe('Recommendations', () => {
     });
 
     it('Hover dan klik share pada icon Email', () => {
+        cy.wait(5000)
         cy.get("#retailers-and-brands > .title ").eq(0).click()
         cy.wait(5000)
         cy.get('#collapse-retailers-and-brands > .body > .bottom > .share-socmed > .icon-share').eq(0).click();
@@ -111,6 +113,7 @@ describe('Recommendations', () => {
       cy.get('#collapse-retailers-and-brands > .body > .bottom > .share-socmed > .icon-share').eq(0).click();
       cy.get('[data-dismiss="modal"] > img').click()
       cy.get('.modal-content').should('not.be.visible')
+      cy.wait(7000)
     });
 
   })

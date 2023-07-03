@@ -1,4 +1,3 @@
-import rgbHex from 'rgb-hex';
 describe('Contact', () => { 
   describe('Memastikan halaman Contact berhasil ditampilkan dan berfungsi dengan baik sesuai desain yang ada', () => { 
     beforeEach(() => {
@@ -32,7 +31,7 @@ describe('Contact', () => {
         cy.get('footer').should("be.visible")
     });
 
-    it.only('Hover dan klik pada email', () => {
+    it('Hover dan klik pada email', () => {
       cy.scrollTo('bottom')
       cy.wait(5000)
       cy.get('.content-area .list .content .cp > a > span').eq(0).realHover();
@@ -43,14 +42,14 @@ describe('Contact', () => {
         Cypress.on('fail', (error, runnable) => { return false})
         const after_ = href.slice(href.indexOf('/') + 1);
         cy.forceVisit(after_,{failOnStatusCode: false});
-        
+        cy.wait(7000)
       });
    
     });
 
-    it('Hover dan klik pada salah satu join social media (LinkedIn, Facebook, dan/atau Twitter)', () => {
+    // it('Hover dan klik pada salah satu join social media (LinkedIn, Facebook, dan/atau Twitter)', () => {
       
-    });
+    // });
 
   })
 })
